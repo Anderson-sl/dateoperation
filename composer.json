@@ -1,0 +1,14 @@
+{
+	"name":"dateoperation/hour",
+	"description":"The DateOperation class is easy to use and provides simple addition, subtraction and sum of hour intervals",
+	"author":{
+		"name":"Andeson Santos",
+		"email":"leo.santosanderson@yahoo.com.br",
+		"role":"Developer"
+	},
+	"autolad":{
+		"psr-4":{
+			"DateOperation\\":"src/"
+		}
+	}
+}
