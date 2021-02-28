@@ -11,5 +11,9 @@
 			"DateOperation\\":"src/"
 		}
 	},
-	"version":"1.0.0"
+	"version":"1.0.0",
+	"dist":{
+		"url":"https://github.com/Anderson-sl/dateoperation/archive/main.zip",
+		"type":"zip"
+	}
 }
