@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'DateOperation\\Operation\\DateOperation' => $baseDir . '/src/Operation/DateOperation.php',
 );

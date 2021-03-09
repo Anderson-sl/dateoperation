@@ -73,7 +73,7 @@ class DateOperation
 			$hora=str_pad(intval($arr[0]), 2, "0", STR_PAD_LEFT);
 			$min=strval(round(60*(floatval("0.".$arr[1]))));
 
-			$min = str_pad($min, 2, "0", STR_PAD_RIGHT);
+			$min = str_pad($min, 2, "0", STR_PAD_LEFT);
 			$result=$hora.":".$min;
 			return $return == true ? $result : ["hour"=>$hora,"minute"=>$min];
 			
