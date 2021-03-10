@@ -146,7 +146,7 @@ public function dateSub($arr = [], $return = true, $tipe = DATETIME_TYPE)
 			$min=strval(round(60*(floatval("0.".$arr[1]))));
 			$result < 0 ? $min *= -1: "" ; 
 
-			$min = str_pad($min, 2, "0", STR_PAD_RIGHT);
+			$min = str_pad($min, 2, "0", STR_PAD_LEFT);
 			$result=$hora.":".$min;
 			return $return == true ? $result : ["hour"=>$hora,"minute"=>$min];
 			
@@ -226,7 +226,7 @@ public function dateDiffSum($arr = [], $return = true, $tipe = DATETIME_TYPE)
 			$min=strval(round(60*(floatval("0.".$arr[1]))));
 			$result < 0 ? $min *= -1: "" ; 
 
-			$min = str_pad($min, 2, "0", STR_PAD_RIGHT);
+			$min = str_pad($min, 2, "0", STR_PAD_LEFT);
 			$result=$hora.":".$min;
 			return $return == true ? $result : ["hour"=>$hora,"minute"=>$min];
 			
