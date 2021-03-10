@@ -65,17 +65,7 @@ class DateOperation
 		
 		$result = intval($result)/60;
 		
-		if(!is_float($result)){
-			return $return == true ? str_pad(intval($result), 2, "0", STR_PAD_LEFT).":"."00" : ["hour"=>$result];
-			
-		}
-			$arr = explode(".", strval($result));
-			$hora=str_pad(intval($arr[0]), 2, "0", STR_PAD_LEFT);
-			$min=strval(round(60*(floatval("0.".$arr[1]))));
-
-			$min = str_pad($min, 2, "0", STR_PAD_LEFT);
-			$result=$hora.":".$min;
-			return $return == true ? $result : ["hour"=>$hora,"minute"=>$min];
+		return $this->dateAssemble($arr,$result,$return);
 			
 	
 
@@ -136,19 +126,7 @@ public function dateSub($arr = [], $return = true, $tipe = DATETIME_TYPE)
 		$result = intval($result)/60;
 
 		
-		if(!is_float($result)){
-			return $return == true ? str_pad(intval($result), 2, "0", STR_PAD_LEFT).":"."00" : ["hour"=>$result];
-			
-		}
-			$arr = explode(".", strval($result));
-			$hora=str_pad(intval($arr[0]), 2, "0", STR_PAD_LEFT);
-			
-			$min=strval(round(60*(floatval("0.".$arr[1]))));
-			$result < 0 ? $min *= -1: "" ; 
-
-			$min = str_pad($min, 2, "0", STR_PAD_LEFT);
-			$result=$hora.":".$min;
-			return $return == true ? $result : ["hour"=>$hora,"minute"=>$min];
+		return $this->dateAssemble($arr,$result,$return);
 			
 	
 
@@ -216,7 +194,15 @@ public function dateDiffSum($arr = [], $return = true, $tipe = DATETIME_TYPE)
 		$result = intval($result)/60;
 
 		
-		if(!is_float($result)){
+		return $this->dateAssemble($arr,$result,$return);
+			
+	
+
+}
+
+protected function dateAssemble($arr = [], $result, $return = true)
+{
+	if(!is_float($result)){
 			return $return == true ? str_pad(intval($result), 2, "0", STR_PAD_LEFT).":"."00" : ["hour"=>$result];
 			
 		}
@@ -229,9 +215,6 @@ public function dateDiffSum($arr = [], $return = true, $tipe = DATETIME_TYPE)
 			$min = str_pad($min, 2, "0", STR_PAD_LEFT);
 			$result=$hora.":".$min;
 			return $return == true ? $result : ["hour"=>$hora,"minute"=>$min];
-			
-	
-
 }
 
 }
