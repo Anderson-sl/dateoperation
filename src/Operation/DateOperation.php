@@ -18,7 +18,7 @@ class DateOperation
 	public function setTimeZone(string $timeZone)
 	{
 		if (!is_string($timeZone)) {
-			throw new Exception("esperado string no parametro 1 do método setTimeZone", 1);
+			throw new \Exception("esperado string no parametro 1 do método setTimeZone", 1);
 		}
 		$this->timeZone = $timeZone;
 		
@@ -26,8 +26,9 @@ class DateOperation
 
 	public function dateSum($arr = [], $return = true, $tipe = DATETIME_TYPE)
 	{
+		$this->resetValue();
 		if (empty($arr)) {
-			throw new Exception("Não foi informado coleção de datas para realizar operações matemáticas", 1);
+			throw new \Exception("Não foi informado coleção de datas para realizar operações matemáticas", 1);
 			
 		}
 		switch ($tipe) {
@@ -37,7 +38,7 @@ class DateOperation
 				{
 					$this->h += $value[0];
 					$this->i += $value[1];
-				
+					var_dump($this->h,$this->i);
 				}
 
 
@@ -46,7 +47,7 @@ class DateOperation
 			case DATETIME_TYPE:
 
 				foreach ($arr as $key => $value) {
-					$value->setTimeZone(new DateTimeZone($this->timeZone));
+					$value->setTimeZone(new \DateTimeZone($this->timeZone));
 					$this->h += $value->format("H");
 					$this->i += $value->format("i");
 				}
@@ -73,8 +74,9 @@ class DateOperation
 
 public function dateSub($arr = [], $return = true, $tipe = DATETIME_TYPE)
 	{
+		$this->resetValue();
 		if (empty($arr)) {
-			throw new Exception("Não foi informado coleção de datas para realizar operações matemáticas", 1);
+			throw new \Exception("Não foi informado coleção de datas para realizar operações matemáticas", 1);
 			
 		}
 		switch ($tipe) {
@@ -82,6 +84,7 @@ public function dateSub($arr = [], $return = true, $tipe = DATETIME_TYPE)
 				$first = false;
 				foreach($arr as $key => $value)
 				{		
+					
 					if($first == false){
 						$this->h = $value[0];
 						$this->i = $value[1];
@@ -92,25 +95,24 @@ public function dateSub($arr = [], $return = true, $tipe = DATETIME_TYPE)
 					}
 				
 				}
-
-
+			
 				break;
 
 			case DATETIME_TYPE:
-
+			
+				$first = true;
 				foreach ($arr as $key => $value) {
-					$value->setTimeZone(new DateTimeZone($this->timeZone));
-					$first = false;
-					if(!$first){
+
+					$value->setTimeZone(new \DateTimeZone($this->timeZone));
+					if($first){
 						$this->h = $value->format("H");
 						$this->i = $value->format("i");
-						$first == true;
+						$first = false;
 						continue;
 					}
 					$this->h -= $value->format("H");
 					$this->i -= $value->format("i");
 				}
-
 
 				break;
 			default:
@@ -134,12 +136,13 @@ public function dateSub($arr = [], $return = true, $tipe = DATETIME_TYPE)
 
 public function dateDiffSum($arr = [], $return = true, $tipe = DATETIME_TYPE)
 	{
+		$this->resetValue();
 		if (empty($arr)) {
-			throw new Exception("Não foi informado coleção de datas para realizar operações matemáticas", 1);
+			throw new \Exception("Não foi informado coleção de datas para realizar operações matemáticas", 1);
 			
 		}
 		if (count($arr) % 2 != 0) {
-			throw new Exception("A coleção de horas informada deve ser par. número impar de datas é inválido", 1);
+			throw new \Exception("A coleção de horas informada deve ser par. (número impar de datas é inválido)", 1);
 			
 		}
 		/*Variavel que armazena a soma das diferenças*/
@@ -167,9 +170,10 @@ public function dateDiffSum($arr = [], $return = true, $tipe = DATETIME_TYPE)
 
 				for($i = 0; $i <= count($arr); $i++)
 				{
-					$value->setTimeZone(new DateTimeZone($this->timeZone));
 					if(isset($arr[$i+1]))
 					{
+						$arr[$i]->setTimeZone(new \DateTimeZone($this->timeZone));
+					$arr[$i+1]->setTimeZone(new \DateTimeZone($this->timeZone));
 						$this->h = $arr[$i+1]->format("H");
 						$this->i = $arr[$i+1]->format("i");
 						$this->h -= $arr[$i]->format("H");
@@ -198,6 +202,13 @@ public function dateDiffSum($arr = [], $return = true, $tipe = DATETIME_TYPE)
 			
 	
 
+}
+
+protected function resetValue()
+{
+	$this->h = 0;
+	$this->i = 0;
+	$this->timeZone = "America/Sao_Paulo";
 }
 
 protected function dateAssemble($arr = [], $result, $return = true)
