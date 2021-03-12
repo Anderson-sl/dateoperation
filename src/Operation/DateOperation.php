@@ -90,7 +90,6 @@ public function dateSub($arr = [], $return = true, $tipe = DATETIME_TYPE)
 				$first = true;
 				foreach ($arr as $key => $value) {
 
-					/*$value->setTimeZone(new \DateTimeZone($this->timeZone));*/
 					if($first){
 						$this->h = $value->format("H");
 						$this->i = $value->format("i");
@@ -159,8 +158,7 @@ public function dateDiffSum($arr = [], $return = true, $tipe = DATETIME_TYPE)
 				{
 					if(isset($arr[$i+1]))
 					{
-						/*$arr[$i]->setTimeZone(new \DateTimeZone($this->timeZone));
-					$arr[$i+1]->setTimeZone(new \DateTimeZone($this->timeZone));*/
+						
 						$this->h = $arr[$i+1]->format("H");
 						$this->i = $arr[$i+1]->format("i");
 						$this->h -= $arr[$i]->format("H");
