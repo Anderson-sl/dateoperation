@@ -140,4 +140,9 @@ $horas = array(
 	new DateTime(date('Y-m-d H:i:s', strtotime('2021-03-10 09:21:00')))
 );
 var_dump($op->dateDiffSum($horas,true,DATETIME_TYPE));
+<<<<<<< HEAD
 ```
+=======
+```
+
+>>>>>>> 7eadf2fb89f11c19f4a9b17961749acfcd39e03f
