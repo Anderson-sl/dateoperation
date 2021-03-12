@@ -34,7 +34,7 @@ Resultado:
 
 A classe DateOperation traz 3 métodos de operações com horas e minutos.
 
-Todos os métodos `method($arr [], $return true, LITERAL_TYPE);` pedem três parâmetros onde o segundo e terceiro são opcionais.
+Todos os métodos `method($arr [], $return true, LITERAL_TYPE);` possuem três parâmetros onde o segundo e terceiro são opcionais.
 
 - **$arr []** = Array de horas para executar as operações. Com o parametro LITERAL_TYPE definido o $arr [] irá esperar horas e minutos no formado de array `["hora1"=>1,"minuto1"=>25],["hora2"=>2,"minuto2"=>13]`. Com o parametro DATETIME_TYPE definido o $arr [] irá esperar horas e minutos no formado DateTime `[new DateTime()],[new DateTime()]`.
 - **$return** = Boolean que define o retorno do método, onde o valor `true` retorna uma string com horas e minutos e `false` retorno uma array no formato `['hour'=>'2','minute'=>'35']`.
@@ -140,9 +140,15 @@ $horas = array(
 	new DateTime(date('Y-m-d H:i:s', strtotime('2021-03-10 09:21:00')))
 );
 var_dump($op->dateDiffSum($horas,true,DATETIME_TYPE));
-<<<<<<< HEAD
-```
-=======
+
 ```
 
->>>>>>> 7eadf2fb89f11c19f4a9b17961749acfcd39e03f
+O timezone do seu servidor deve estar definido corretamente. 
+
+Se desejar definir o timezone manualmente é só adicionar o `date_default_timezone_set(string timezone);` antes de rodas o método desejado.
+
+O componente DateOperation oferece uma forma simples de manipular horas e minutos.
+
+Desenvolvido por **Anderson S Leonardo**.
+
+
