@@ -7,21 +7,10 @@ class DateOperation
 {
 	private $h = 0;
 	private $i = 0;
-	private $timeZone = "America/Sao_Paulo";
-	
 
 	public function __construct()
 	{
 
-	}
-
-	public function setTimeZone(string $timeZone)
-	{
-		if (!is_string($timeZone)) {
-			throw new \Exception("esperado string no parametro 1 do método setTimeZone", 1);
-		}
-		$this->timeZone = $timeZone;
-		
 	}
 
 	public function dateSum($arr = [], $return = true, $tipe = DATETIME_TYPE)
@@ -38,7 +27,6 @@ class DateOperation
 				{
 					$this->h += $value[0];
 					$this->i += $value[1];
-					var_dump($this->h,$this->i);
 				}
 
 
@@ -47,11 +35,10 @@ class DateOperation
 			case DATETIME_TYPE:
 
 				foreach ($arr as $key => $value) {
-					$value->setTimeZone(new \DateTimeZone($this->timeZone));
 					$this->h += $value->format("H");
 					$this->i += $value->format("i");
+					
 				}
-
 
 				break;
 			default:
@@ -103,7 +90,7 @@ public function dateSub($arr = [], $return = true, $tipe = DATETIME_TYPE)
 				$first = true;
 				foreach ($arr as $key => $value) {
 
-					$value->setTimeZone(new \DateTimeZone($this->timeZone));
+					/*$value->setTimeZone(new \DateTimeZone($this->timeZone));*/
 					if($first){
 						$this->h = $value->format("H");
 						$this->i = $value->format("i");
@@ -172,8 +159,8 @@ public function dateDiffSum($arr = [], $return = true, $tipe = DATETIME_TYPE)
 				{
 					if(isset($arr[$i+1]))
 					{
-						$arr[$i]->setTimeZone(new \DateTimeZone($this->timeZone));
-					$arr[$i+1]->setTimeZone(new \DateTimeZone($this->timeZone));
+						/*$arr[$i]->setTimeZone(new \DateTimeZone($this->timeZone));
+					$arr[$i+1]->setTimeZone(new \DateTimeZone($this->timeZone));*/
 						$this->h = $arr[$i+1]->format("H");
 						$this->i = $arr[$i+1]->format("i");
 						$this->h -= $arr[$i]->format("H");
@@ -208,7 +195,6 @@ protected function resetValue()
 {
 	$this->h = 0;
 	$this->i = 0;
-	$this->timeZone = "America/Sao_Paulo";
 }
 
 protected function dateAssemble($arr = [], $result, $return = true)
