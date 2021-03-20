@@ -209,7 +209,10 @@ protected function dateAssemble($arr = [], $result, $return = true)
 
 			$min = str_pad($min, 2, "0", STR_PAD_LEFT);
 			$result=$hora.":".$min;
-			return $return == true ? $result : ["hour"=>$hora,"minute"=>$min];
+			$obj = new \stdClass();
+			$obj->hour = $hora;
+			$obj->minute = $min;
+			return $return == true ? $result : $obj;
 }
 
 }
