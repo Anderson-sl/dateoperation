@@ -37,7 +37,7 @@ A classe DateOperation traz 3 métodos de operações com horas e minutos.
 Todos os métodos `method($arr [], $return true, LITERAL_TYPE);` possuem três parâmetros onde o segundo e terceiro são opcionais.
 
 - **$arr []** = Array de horas para executar as operações. Com o parametro LITERAL_TYPE definido o $arr [] irá esperar horas e minutos no formado de array `["hora1"=>1,"minuto1"=>25],["hora2"=>2,"minuto2"=>13]`. Com o parametro DATETIME_TYPE definido o $arr [] irá esperar horas e minutos no formado DateTime `[new DateTime()],[new DateTime()]`.
-- **$return** = Boolean que define o retorno do método, onde o valor `true` retorna uma string com horas e minutos e `false` retorno uma array no formato `['hour'=>'2','minute'=>'35']`.
+- **$return** = Boolean que define o retorno do método, onde o valor `true` retorna uma string com horas e minutos e `false` retorno um objeto com dois atributos, `$op->hour` que retorna a hora e `'$op->minute` que retorna o minuto.
 - **LITERAL_TYPE ou DATETIME_TYPE** = Constante que define o tipo de entrada que o método irá receber, onde `LITERAL_TYPE` espera um array `array([1,21],[2,12])` e `DATETIME_TYPE` espera um array `array(new DateTime('NOW'),new DateTime('NOW'))`.
 
 # Somando Horas e Minutos
